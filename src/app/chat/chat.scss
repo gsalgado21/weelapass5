@@ -1,0 +1,52 @@
+$colors: (
+  primary: #268790,
+  secondary: #e7991b,
+  danger: #D65451,
+  light: #FFF,
+  dark: #444,
+  gray: #a2a2a2,
+  white: #FFF,
+  bg-color: #F7F9FB,
+  border-color: #E9EBEB,
+  red: #ce5252,
+  green: #49bb86,
+  warning: #e7991b
+);
+
+page-chat {
+    .message {
+        padding: 10px !important;
+        transition: all 250ms ease-in-out !important;
+        border-radius: 6px !important;
+        margin-bottom: 0px !important;
+    }
+
+    .my_message {
+        background: map-get($map: $colors, $key: primary) !important;
+        color: #FFF !important;
+    }
+
+    .other_message {
+        background: #dcdcdc !important;
+        color: #000 !important;
+    }
+
+    .time {
+        color: #afafaf;
+        font-size: small;
+
+        &.left {
+            text-align: left;
+        }
+
+        &.right {
+            text-align: right;
+        }
+
+        margin-bottom: 8px;
+    }
+
+    .message_row {
+        background-color: #fff;
+    }
+}

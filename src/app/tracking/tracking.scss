@@ -1,0 +1,64 @@
+
+page-tracking,
+.tracking {
+  #map_tracking {
+    //position: relative;
+    height: 100%;
+  }
+  .tracking-info {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+
+    .item-block {
+
+      &:first-child {
+        border-bottom: 1px solid color($colors, border-color);
+      }
+
+      .item-inner {
+        border: none;
+      }
+    }
+
+    img.icon {
+      left: 5px;
+      margin-top: 5px;
+      width: 54px;
+      height: 54px;
+    }
+
+    .item-content {
+      position: relative;
+      padding-right: 80px;
+
+      .action-icons {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2em;
+      }
+    }
+  }
+
+  .row{
+    background-color: #fff;
+  }
+
+
+  .gm-style-iw{
+    top: 10px!important;
+    left: 3px!important;
+    right: 3px!important;
+    width: auto!important;
+    color: map-get($map: $colors, $key: primary);
+    font-weight: 800!important;
+    background: #fff;
+    font-size: 16px!important;
+    text-align: center;
+    z-index: 999;
+    margin-bottom: -20px!important;
+
+  }
+}

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{trip && trip.status == 'GOING' ? 'A CAMINHO': 'AGUARDE O MOTORISTA'}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div id="map_tracking"></div>
+</ion-content>
+<ion-footer>
+  <ion-item *ngIf="driver">
+    <ion-avatar item-left>
+      <img src="{{ driver.avatar_url || 'assets/img/default-dp.png' }}" />
+    </ion-avatar>
+    <h2>{{ driver.name }} &nbsp; {{ driver.driver_rating}} <ion-icon name="md-star" color="warning"></ion-icon>
+    </h2>
+    <p>{{ driver.car.name }}</p>
+    <p>Placa {{ driver.car.plate }} - <b>Tempo Estimado: {{time}}</b></p>
+  </ion-item>
+  <ion-row no-padding justify-content-center>
+    <ion-col col *ngIf="trip && trip.status == 'WAITING'">
+      <button ion-button block color="danger" (tap)="cancelTrip()">CANCELAR</button>
+    </ion-col>
+    <ion-col col>
+      <a item-right ion-button block outline *ngIf="driver" href="tel: {{ driver.phone }} ">
+        CONTATO
+      </a>
+      <a item-right ion-button block outline (tap)="openChat()">
+        CHAT
+      </a>
+    </ion-col>
+  </ion-row>
+</ion-footer>

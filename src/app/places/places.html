@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-searchbar #searchbar [(ngModel)]="keyword" (ionInput)="search($event)" color="dark" (keydown)="loader = true"
+      debounce="750" mode="md" animated="true" [placeholder]="type == 'origin' ? 'Onde você está ?' : 'Para onde você deseja ir ?'" showCancelButton="false" autocorrect="off">
+    </ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="common-bg">
+  <ion-list>
+    <ion-item (tap)="openMap()">
+      <ion-icon name="ios-pin-outline" item-start></ion-icon>
+      <h2>Definir local no mapa</h2>
+    </ion-item>
+    <ion-item text-center *ngIf="!loader && keyword == ''">
+      <ion-note>
+        Digite o endereço para pesquisar
+      </ion-note>
+    </ion-item>
+    <ion-item text-center *ngIf="!loader && keyword.length > 0 && places.length==0">
+      <ion-note>
+        Nenhum foi encontrado o endereço digitado
+      </ion-note>
+    </ion-item>
+    <ion-item *ngFor="let place of places" (click)="selectPlace(place)">
+      <ion-icon name="ios-pin-outline" item-left></ion-icon>
+      <div>
+        <h2>{{ streetName(place)}}</h2>
+        <p>{{ addressName(place)}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+  <h1 text-center [hidden]="!loader">
+    <ion-spinner></ion-spinner>
+  </h1>
+</ion-content>

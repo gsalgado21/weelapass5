@@ -1,0 +1,96 @@
+<ion-content>
+  <div id="map_home"></div>
+
+  <button ion-button menuToggle large clear color="white">
+    <ion-icon name="menu"></ion-icon>
+  </button>
+
+  <ion-list no-lines class="places-selector">
+    <ion-item (tap)="choosePlace('origin')">
+      <ion-icon item-left name="ios-pin-outline" color="green"></ion-icon>
+      <ion-input disabled type="text" placeholder="Qual o local de partida?" [value]="trip.origin_vicinity"></ion-input>
+    </ion-item>
+    <ion-item (tap)="choosePlace('destination')">
+      <ion-icon item-left name="ios-pin-outline" color="red"></ion-icon>
+      <ion-input disabled type="text" placeholder="Para onde você vai?" [(ngModel)]="trip.destination_vicinity"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-spinner class="map-loading" [hidden]="!loading_map"></ion-spinner>
+  <ion-card *ngIf="gps_alert && !hasOriginAndDestination()" class="alert">
+    <ion-card-content>
+      Para uma melhor experiência, habilite o GPS do seu smartphone
+    </ion-card-content>
+    <hr>
+    <button ion-button float-right clear small (tap)="this.diagnostic.switchToLocationSettings()">
+      IR PARA CONFIGURAÇÕES
+    </button>
+  </ion-card>
+
+  
+  <div class="align-bottom" text-center [hidden]="!hasOriginAndDestination()">
+    <div text-center [hidden]="!this.loading">
+      <ion-spinner></ion-spinner>
+      <p ion-text color="primary">Simulando Trajeto...</p>
+    </div>
+    
+    <div [hidden]="this.loading || confirmed_category">
+      <p ion-text color="primary">Selecione uma categoria.</p>
+      <ion-list>
+        <ion-item *ngFor="let c of categories; index as i" (click)="!c.disabled ? selected_category = i : ''"
+          [ngStyle]="{'margin-top': '1px', 'outline':selected_category === i ? '1px solid #268790' : '', 'opacity':c.disabled ? '0.5' : '1'}">
+          <ion-thumbnail item-start style="padding-left: 5px; padding-top: 5px;">
+            <img src="{{c.image}}">
+          </ion-thumbnail>
+          <h3>{{ c.name }} - {{ c.price | currency : 'BRL' : 'symbol' :'1.2-2' }}</h3>
+          <p style="font-size: 1.1rem;">{{ c.description }}</p>
+          <p [hidden]="!c.disabled" style="color: red; font-size: 1.1rem;">Sem motoristas no momento!</p>
+        </ion-item>
+
+        <button ion-button margin-top (tap)="confirmCategory()">Confirmar</button>
+
+      </ion-list>
+    </div>
+    
+    <div [hidden]="this.loading || !confirmed_category">
+      <div text-center>
+        <p no-margin>Valor Estimado</p>
+        <h2 no-margin *ngIf="!trip.discount_amount">{{ trip.total_amount | currency : 'BRL' : 'symbol' :'1.2-2' }}</h2>
+
+        <div *ngIf="trip.discount_amount">
+          <h5 no-margin>
+            <ion-note><s>{{ trip.total_amount | currency : 'BRL' : 'symbol' :'1.2-2' }}</s></ion-note>
+          </h5>
+          <h2 no-margin>{{ trip.total_amount - trip.discount_amount | currency : 'BRL' : 'symbol' :'1.2-2' }}</h2>
+        </div>
+      </div>
+
+      <ion-row no-margin justify-content-center>
+        <ion-col col-6 no-padding>
+          <ion-item>
+            <p no-margin>Forma de Pagto</p>
+            <h2 *ngIf="trip.payment_method == 'CASH'" no-margin>
+              <ion-icon name="ios-cash" color="green"></ion-icon> DINHEIRO
+            </h2>
+            <h2 *ngIf="trip.payment_method == 'CREDIT_CARD'" no-margin>
+              <ion-icon name="ios-card" color="warning"></ion-icon> CARTÃO DE CRÉDITO
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 no-padding>
+          <ion-item (tap)="showPromoPopup()">
+            <p no-margin>Cupom de Desconto</p>
+            <h2 *ngIf="!trip.coupon_token" no-margin>
+              <ion-note>Informar cupom <ion-icon name="ios-arrow-down" small></ion-icon>
+              </ion-note>
+            </h2>
+            <h2 *ngIf="trip.coupon_token" no-margin>
+              <ion-icon name="ios-create"></ion-icon> {{ trip.coupon_token }}
+            </h2>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <button ion-button margin-top block (tap)="requestCar()">SOLICITAR CARRO</button>
+    </div>
+  </div> 
+</ion-content>

@@ -1,0 +1,154 @@
+$colors: (
+  primary: #268790,
+  secondary: #e7991b,
+  danger: #D65451,
+  light: #FFF,
+  dark: #444,
+  gray: #a2a2a2,
+  white: #FFF,
+  bg-color: #F7F9FB,
+  border-color: #E9EBEB,
+  red: #ce5252,
+  green: #49bb86,
+  warning: #e7991b
+);
+
+page-home {
+  
+  #map_home{
+    position: relative;
+    height: 100%;
+  }
+
+  .map-loading{
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    left: 50%;
+    margin-left: -30px;
+    z-index: 999;
+    min-height: 60px;
+    &::after{
+      content: 'Carregando Mapa...';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-left: -43px;
+      right: 0;
+      color: map-get($map: $colors, $key:primary);
+      width: 150px;
+    }
+    * {
+      width: 60px;
+      height: 60px;
+      stroke: map-get($map: $colors, $key: primary);
+      fill: #f4f4f4;
+    }
+  }
+
+  .button-menutoggle{
+    position: absolute;
+    top: 0px;
+    left: -6px;
+    z-index: 1000;
+    font-size: 2.4rem;
+    text-shadow: 0px 0px 6px rgba(0, 0, 0, .4);
+  }
+
+  .places-selector{
+    position: absolute;
+    z-index: 1000;
+    top: 6px;
+    left: 62px;
+    right: 6px;
+    border-radius: 6px;
+    overflow: hidden;
+    .item-md{
+      .item-inner{
+        padding-left: 0px;
+        margin-left: 0px;
+      }
+    }
+  }
+
+
+  .col.vehicle img{
+    max-width: 45px;
+    height: auto;
+    border-radius: 50%;
+    padding: 4px;
+  }
+
+  .alert.card{
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+    border: 1px solid map-get($map: $colors, $key: primary)
+  }
+
+  .active img{
+    background: color($colors, primary);
+    color: #fff;
+  }
+  .align-bottom{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 4px 8px;
+    .item{
+      padding-left: 0px!important;
+      .item-inner{
+        border-bottom: 0px!important;
+        box-shadow: none!important;
+      }
+    }
+
+    .label{
+      margin-bottom: 0px!important;
+    }
+    ion-spinner{
+      margin-left: -30px;
+      min-height: 60px;
+    }
+    ion-spinner * {
+      width: 60px;
+      height: 60px;
+      stroke: map-get($map: $colors, $key: primary);
+      fill: #f4f4f4;
+    }
+  }
+}
+
+popover-home{
+  .searchingCircle{
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border: 18px solid rgb(66, 218, 231);
+    border-radius: 50%;
+    margin: 30px auto;
+    background-color: map-get($map: $colors, $key: primary);
+    animation-name: pulse;
+    animation-duration: .8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes pulse{
+    0%{
+      box-shadow: 0px 0px 2px 0px rgba(66, 218, 231,.3);
+    }
+    65%{
+      box-shadow: 0px 0px 2px 23px rgba(66, 218, 231,.3);
+    }
+    90%{
+      box-shadow: 0px 0px 2px 23px rgba(66, 218, 231,0);
+    }
+  }
+}

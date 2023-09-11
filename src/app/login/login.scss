@@ -1,0 +1,27 @@
+$colors: (
+  primary: #268790,
+  secondary: #e7991b,
+  danger: #D65451,
+  light: #FFF,
+  dark: #444,
+  gray: #a2a2a2,
+  white: #FFF,
+  bg-color: #F7F9FB,
+  border-color: #E9EBEB,
+  red: #ce5252,
+  green: #49bb86,
+  warning: #e7991b
+);
+
+page-login {
+  .logo{
+    width: 80%;
+    position: relative;
+    margin: 40px auto;
+  }
+  .header{
+    background: color($colors, primary);
+    position: relative;
+    text-align: center;
+  }
+}

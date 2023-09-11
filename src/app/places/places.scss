@@ -1,0 +1,23 @@
+page-places {
+  ion-navbar {
+    .search-bar {
+      position: relative;
+
+      input {
+        width: 100%;
+        border: none;
+        padding: 10px;
+        background: transparent;
+        color: #fff;
+      }
+    }
+  }
+
+  .item .item-inner{
+    margin-left: 5px!important;
+  }
+
+  .searchbar-clear-icon{
+    display: none!important;
+  }
+}

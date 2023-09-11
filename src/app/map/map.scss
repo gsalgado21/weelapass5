@@ -1,0 +1,56 @@
+$colors: (
+  primary: #268790,
+  secondary: #e7991b,
+  danger: #D65451,
+  light: #FFF,
+  dark: #444,
+  gray: #a2a2a2,
+  white: #FFF,
+  bg-color: #F7F9FB,
+  border-color: #E9EBEB,
+  red: #ce5252,
+  green: #49bb86,
+  warning: #e7991b
+);
+
+page-map {
+
+  #map {
+    width: 100vw;
+    height: 100%;
+    position: relative;
+    &::after{
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: map-get($map: $colors, $key: primary);
+      left: 50%;
+      top: 50%;
+      margin-left: -4px;
+      margin-top: -4px;
+      border: 2px solid aquamarine;
+    }
+  }
+
+  .address-description{
+    position: absolute;
+    bottom: 25px;
+    left: 10px;
+    right: 10px;
+    border-radius: 6px;
+    background-color: #fff;
+    z-index: 1000;
+    p{
+      color: #777;
+      margin: 0;
+    }
+    h2{
+      color: map-get($map: $colors, $key: primary);
+      font-size: 1.8rem;
+      margin-top: 0px;
+      margin-bottom: 14px;
+    }
+  }
+}

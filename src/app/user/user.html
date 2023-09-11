@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>MEU PERFIL</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="confirm()" #register="ngForm">
+    <ion-card class="avatar" (tap)="selectImage()">
+      <img [src]="user.avatar || 'assets/img/default-dp.png'">
+    </ion-card>
+
+    <ion-list padding-horizontal no-margin>
+      <ion-item>
+        <ion-label stacked>Nome Completo <i class="req"></i></ion-label>
+        <ion-input type="text" name="name" [(ngModel)]="user.name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>CPF <i class="req"></i></ion-label>
+        <ion-input type="tel" name="cpf" [(ngModel)]="user.federal_tax_id" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Email <i class="req"></i></ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="user.email" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Telefone (com DDD) <i class="req"></i></ion-label>
+        <ion-input type="tel" name="phone" [(ngModel)]="user.phone" mask="(00) 00000-0000" minlength="14" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button padding block round type="submit" [disabled]="!register.form.valid">Confirmar</button>
+      </ion-item>
+    </ion-list>
+    <div padding-horizontal ion-text no-margin color="danger" text-center>
+      <small>
+        * Campos obrigatórios
+      </small>
+    </div>
+  </form>
+</ion-content>

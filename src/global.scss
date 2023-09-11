@@ -1,0 +1,136 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+$colors: (
+  primary: #268790,
+  secondary: #e7991b,
+  danger: #D65451,
+  light: #FFF,
+  dark: #444,
+  gray: #a2a2a2,
+  white: #FFF,
+  bg-color: #F7F9FB,
+  border-color: #E9EBEB,
+  red: #ce5252,
+  green: #49bb86,
+  warning: #e7991b
+);
+
+i.req:after{
+    position: relative;
+    display: inline;
+    content: '*';
+    color: rgb(207, 38, 38);
+  }
+  
+  .item, .item>.item-inner{
+    border-bottom-color: #ccc!important;
+    box-shadow: none!important;
+  }
+  
+  .list .item-input:last-child {
+    border-bottom-width: 0px!important;
+  }
+  ion-searchbar.searchbar-md, .searchbar-ios{
+      padding: 0px 4px;
+      background: transparent!important;
+      .searchbar-input{
+          box-shadow: none;
+          background-color: transparent!important;
+          padding: 8px 10px;
+          color: #fff;
+          font-size: 1.8rem;
+          &::placeholder { 
+              color: #eee;
+              opacity: 1;
+          }
+      }
+      .searchbar-search-icon{
+          display: none;
+      }
+  }
+  
+   ion-menu{
+      .user-avatar{
+          height: 80px;
+          width: 80px;
+          object-fit: cover;
+      }
+      .menu-loader{
+          width: 100%;
+          margin: 20px auto;
+          height: 50px;
+          svg{
+           stroke: #fff!important;
+          }
+      }
+      .toolbar-content{
+          padding: 10px;
+          text-align: center;
+          color: #fff;
+          img{
+              border-radius: 100%;
+              width: 80px;
+              margin-bottom: 10px;
+          }
+          h3{
+              font-size: 1.2em;
+              margin: 2px auto;
+          }
+          h4{
+              font-size: 1.1em;
+              margin: 2px auto;
+          }
+      }
+      ion-toolbar.toolbar{
+          min-height: 157px!important;
+          .toolbar-background{
+              background-color: map-get($map: $colors, $key: primary);
+          }
+          color: #fff;
+      }
+      .menu-inner{
+          width: 250px!important;
+      }
+  
+      ion-label{
+          font-size: 1.1em;
+          color:#33455a;
+      }
+  }
+  
+  
+  ion-popover{
+    background: rgba(255, 255, 255, 0.8);
+    .popover-content{
+      left: 10px!important;
+      right: 10px!important;
+      width: auto!important;
+      box-shadow: none!important;
+    }
+  }

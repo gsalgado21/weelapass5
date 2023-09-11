@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Defina o Local no Mapa</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding class="address-description" [hidden]="!address">
+    <p>Endereço</p>
+    <h2>{{ address ? address.Location.Address.Label : '' }}</h2>
+    <button ion-button block (tap)="selectPlace()">
+      CONFIRMAR
+    </button>
+  </div>
+  <div #map id="map"></div>
+</ion-content>
